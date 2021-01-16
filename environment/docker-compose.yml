@@ -1,18 +1,18 @@
 # docker-compose.yml
 version: '3.7'
 services:
-  backend1:
-    container_name: tools-serv1
-    image: tools-app:1.0.0
-    ports:
-      - 8081:8081
-      - 11112:11111
-    depends_on:
-      - postgres
-    links:
-      - postgres
-    networks:
-      - postgres-network
+#  backend1:
+#    container_name: tools-serv1
+#    image: tools-app:1.0.0
+#    ports:
+#      - 8081:8081
+#      - 11112:11111
+#    depends_on:
+#      - postgres
+#    links:
+#      - postgres
+#    networks:
+#      - postgres-network
 
   ###### Database
   postgres:
@@ -28,7 +28,7 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - postgres-network
+      - postgres
     restart: unless-stopped
 
   pgadmin:
@@ -42,7 +42,7 @@ services:
     ports:
       - "${PGADMIN_PORT:-5050}:80"
     networks:
-      - postgres-network
+      - postgres
     restart: unless-stopped
 
 

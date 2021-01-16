@@ -1,7 +1,7 @@
 package com.rbinnovative.tools.controller;
 
 import com.rbinnovative.tools.exception.ToolException;
-import com.rbinnovative.tools.model.ToolRequest;
+import com.rbinnovative.tools.model.request.ToolRequest;
 import com.rbinnovative.tools.service.ToolsProcessorImpl;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

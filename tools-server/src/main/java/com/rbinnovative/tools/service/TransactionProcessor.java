@@ -1,10 +1,16 @@
 package com.rbinnovative.tools.service;
 
 import com.rbinnovative.tools.exception.ToolException;
-import com.rbinnovative.tools.model.ToolRequest;
-import com.rbinnovative.tools.model.ToolsDTO;
+import com.rbinnovative.tools.model.request.ToolRequest;
+import com.rbinnovative.tools.model.dto.ToolsDTO;
+
+import java.util.List;
 
 public interface TransactionProcessor {
+    ToolsDTO processOneQuery(Integer id) throws ToolException;
+
+    List<ToolsDTO> processAllQuery();
+
     ToolsDTO createTool(ToolRequest toolRequest);
 
     //    @Override

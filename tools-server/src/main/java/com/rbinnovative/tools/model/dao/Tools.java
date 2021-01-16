@@ -1,4 +1,4 @@
-package com.rbinnovative.tools.model;
+package com.rbinnovative.tools.model.dao;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

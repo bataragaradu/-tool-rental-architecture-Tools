@@ -1,17 +1,17 @@
-package com.rbinnovative.tools.model;
+package com.rbinnovative.tools.model.dto;
 
-public class ToolRequest {
+public class ToolsDTO {
     private Integer id;
     private String name;
 
-    public ToolRequest(){
-//
+    public ToolsDTO(){
     }
+
     public Integer getId() {
         return id;
     }
 
-    public ToolRequest setId(Integer id) {
+    public ToolsDTO setId(Integer id) {
         this.id = id;
         return this;
     }
@@ -20,14 +20,14 @@ public class ToolRequest {
         return name;
     }
 
-    public ToolRequest setName(String name) {
+    public ToolsDTO setName(String name) {
         this.name = name;
         return this;
     }
 
     @Override
     public String toString() {
-        return "ToolRequest{" +
+        return "ToolsDTO{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
                 '}';

@@ -1,23 +1,42 @@
 package com.rbinnovative.tools.service;
 
 import com.rbinnovative.tools.exception.ToolException;
-import com.rbinnovative.tools.model.ToolRequest;
-import com.rbinnovative.tools.model.Tools;
-import com.rbinnovative.tools.model.ToolsDTO;
+import com.rbinnovative.tools.model.request.ToolRequest;
+import com.rbinnovative.tools.model.dao.Tools;
+import com.rbinnovative.tools.model.dto.ToolsDTO;
 import com.rbinnovative.tools.repository.ToolsRepository;
 import com.rbinnovative.tools.utils.Utils;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ToolsProcessorImpl implements TransactionProcessor {
 
     @Autowired
     private ToolsRepository toolsRepository;
+
+    @Override
+    public ToolsDTO processOneQuery(Integer id) throws ToolException {
+        Optional<Tools> toolOptional = toolsRepository.findById(id);
+        Optional<ToolsDTO> toolsDTO = toolOptional.map((toolsElem) -> mapToToolsDTOHandler(toolsElem, null));
+        if (toolsDTO.isPresent()) {
+            return toolsDTO.get();
+        } else {
+            throw new ToolException("The id doesn't exist, needs to be created " + id);
+        }
+    }
+
+    @Override
+    public List<ToolsDTO> processAllQuery() {
+        List<Tools> tools = Optional.ofNullable(toolsRepository.findAll()).orElseGet(ArrayList::new);
+        return tools.stream().map((toolsElem) -> mapToToolsDTOHandler(toolsElem, null)).collect(Collectors.toList());
+    }
 
     @Override
     public ToolsDTO createTool(ToolRequest toolRequest) {
@@ -54,23 +73,9 @@ public class ToolsProcessorImpl implements TransactionProcessor {
         //Particular request entities
         return createTool;
     }
-}
-//    public List<ToolsDTO> processAllQuery(QueryRequest queryRequest) {
-//        List<Tools> tools = Optional.ofNullable(toolsRepository.findAll()).orElseGet(ArrayList::new);
-//        return tools.stream().map((tools) -> mapToToolsDTOHandler(tools, queryRequest.getFields())).collect(Collectors.toList());
-//    }
-//
-//    @Override
-//    public InvoiceDTO processOneQuery(Integer id, QueryRequest queryRequest) throws BillerException {
-//        Optional<Invoice> invoiceOptional = invoiceRepository.findById(id);
-//        Optional<InvoiceDTO> billingResponse = invoiceOptional.map((invoice) -> mapToInvoiceDTOHandler(invoice, queryRequest.getFields()));
-//        if (billingResponse.isPresent()) {
-//            return billingResponse.get();
-//        } else {
-//            throw new BillerException("The id doesn't exist, needs to be created " + id);
-//        }
-//    }
 
+
+}
 
 //    @Override
 //    public InvoiceDTO updateParameter(Integer id, InvoiceRequest invoiceRequest) throws InvoiceException, BillerException {
