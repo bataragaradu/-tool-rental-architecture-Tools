@@ -40,9 +40,9 @@ public class ToolsProcessorImpl implements TransactionProcessor {
 
     @Override
     public ToolsDTO createTool(ToolRequest toolRequest) {
-        Tools createTools = processToolCreation(toolRequest);
-        createTools = toolsRepository.save(createTools);
-        return mapToToolsDTOHandler(createTools, null);
+        Tools createdTool = processToolCreation(toolRequest);
+        createdTool = toolsRepository.save(createdTool);
+        return mapToToolsDTOHandler(createdTool, null);
     }
 
     @Override
@@ -52,7 +52,7 @@ public class ToolsProcessorImpl implements TransactionProcessor {
         if (toolsOptional.isPresent()) {
             toolsRepository.delete(toolsOptional.get());
         } else {
-            throw new ToolException("Invoice with requested id doesn't exist");
+            throw new ToolException("Tools with requested id doesn't exist");
         }
     }
 

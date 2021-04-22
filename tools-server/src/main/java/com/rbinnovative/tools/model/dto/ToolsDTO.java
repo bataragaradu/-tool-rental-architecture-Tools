@@ -3,6 +3,8 @@ package com.rbinnovative.tools.model.dto;
 public class ToolsDTO {
     private Integer id;
     private String name;
+    private String imageUrl;
+    private boolean available;
 
     public ToolsDTO(){
     }
@@ -22,6 +24,15 @@ public class ToolsDTO {
 
     public ToolsDTO setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ToolsDTO setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

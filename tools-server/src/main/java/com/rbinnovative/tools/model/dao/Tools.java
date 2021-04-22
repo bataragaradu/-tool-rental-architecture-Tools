@@ -13,6 +13,10 @@ public class Tools {
     private Integer id;
     @Column(name = "[name]")
     private String name;
+    @Column(name = "[image_url]")
+    private String imageUrl;
+    @Column(name = "[available]")
+    private boolean available;
 
     public Tools() {
     }
@@ -26,12 +30,30 @@ public class Tools {
         return this;
     }
 
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public Tools setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
+        return this;
+    }
+
     public String getName() {
         return name;
     }
 
     public Tools setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public Tools setAvailable(boolean available) {
+        this.available = available;
         return this;
     }
 }

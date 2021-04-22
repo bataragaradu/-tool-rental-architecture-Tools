@@ -1,18 +1,31 @@
 # docker-compose.yml
 version: '3.7'
 services:
-#  backend1:
-#    container_name: tools-serv1
-#    image: tools-app:1.0.0
-#    ports:
-#      - 8081:8081
-#      - 11112:11111
-#    depends_on:
-#      - postgres
-#    links:
-#      - postgres
-#    networks:
-#      - postgres-network
+  tools:
+    environment:
+      - DATABASE_HOST_IP=postgres
+    container_name: tools-app
+    image: tools-app:1.0.0
+    ports:
+      - 8082:8082
+      - 11112:11111
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    networks:
+      - postgres-network
+
+#    orders:
+#      container_name: orders-serv1
+#      image: orders-app:1.0.0
+#      ports:
+#        - 8082:8082
+#        - 11112:11111
+#      depends_on:
+#        - postgres
+#      links:
+#        - postgres
 
   ###### Database
   postgres:
@@ -26,9 +39,9 @@ services:
     volumes:
       - postgres:/data/postgres
     ports:
-      - "5432:5432"
+      - 5432:5432
     networks:
-      - postgres
+      - postgres-network
     restart: unless-stopped
 
   pgadmin:
@@ -41,52 +54,15 @@ services:
       - pgadmin:/root/.pgadmin
     ports:
       - "${PGADMIN_PORT:-5050}:80"
-    networks:
-      - postgres
+#    networks:
+#      - postgres-network
     restart: unless-stopped
 
 
+# TODO: Investigate network issue
 networks:
-  postgres:
+  postgres-network:
     driver: bridge
 volumes:
   postgres:
   pgadmin:
-
-#version: "3.7"
-#services:
-#  rabbitmq:
-#    image:  rabbitmq:3-management
-#    container_name: some-rabbit11
-#    ports:
-#      - 5671-5672:5671-5672
-#      - 15672:15672
-#    networks:
-#      - backend
-#
-#  backend1:
-#    container_name: backend1
-#    image: com.master/backend1:latest
-#    ports:
-#      - 8082:8080
-#      - 11112:11111
-#    depends_on:
-#      - rabbitmq
-#    links:
-#      - rabbitmq
-#    networks:
-#      - backend
-#
-#  backend-reader:
-#    container_name: backend-reader
-#    image: com.master/backend-reader:latest
-#    ports:
-#      - 8084:8083
-#      - 11113:11111
-#    depends_on:
-#      - rabbitmq
-#    links:
-#      - rabbitmq
-#    networks:
-#      - backend
-#

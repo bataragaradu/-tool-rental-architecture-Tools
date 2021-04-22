@@ -59,35 +59,4 @@ public class ToolsModifierController {
 		return ResponseEntity.ok().body(StringUtils.EMPTY);
 	}
 
-//	/**
-//	 * Support for POST /tool endpoint
-//	 * @return the id of updated tool
-//	 */
-//	@ApiOperation(value = "PUT tool ")
-//	@ApiResponses(value = { @ApiResponse(code = 200, message = "Update a tool"),
-//			@ApiResponse(code = 400, message = " tool with that id could not be found")})
-//	@RequestMapping(value ="/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<String> updateTool(@PathVariable Integer id, @Valid @RequestBody ToolRequest ToolRequest) throws ToolException, BillerException {
-//
-//		logger.info("Update a parameter settings {} with id {}", ToolRequest, id);
-//		ToolsProcessor.updateParameter(id, ToolRequest);
-//		logger.info("PUT response sent with no body");
-//		return ResponseEntity.ok().body(StringUtils.EMPTY);
-//	}
-//
-//	/**
-//	 * Support for DELETE /tool endpoint
-//	 * @return the id of deleted tool
-//	 */
-//	@ApiOperation(value = "DELETE tool ")
-//	@ApiResponses(value = { @ApiResponse(code = 200, message = "Remove a tool"),
-//			@ApiResponse(code = 400, message = " tool with that id could not be found")})
-//	@RequestMapping(value ="/{id}", method = RequestMethod.DELETE, consumes = MediaType.APPLICATION_JSON_VALUE)
-//	public ResponseEntity<String> deleteTool(@PathVariable Integer id) throws ToolException {
-//
-//		logger.info("Remove a tool with id {}", id);
-//		ToolsProcessor.removeParameter(id);
-//		logger.info("DELETE  response sent with no body");
-//		return ResponseEntity.ok().body(StringUtils.EMPTY);
-//	}
 }

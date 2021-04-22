@@ -3,6 +3,7 @@ package com.rbinnovative.tools.model.request;
 public class ToolRequest {
     private Integer id;
     private String name;
+    private String imageUrl;
 
     public ToolRequest(){
 //
@@ -22,6 +23,15 @@ public class ToolRequest {
 
     public ToolRequest setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public ToolRequest setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
         return this;
     }
 

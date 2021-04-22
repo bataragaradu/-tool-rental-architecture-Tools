@@ -17,7 +17,14 @@ https://github.com/khezen/compose-postgres
 
 The created database name is : postgres
 
-#TODO:
+#High level TODO:
+
+##  Add jenkins environment on localhost docker always started. 
+##  Add sonarqube/checkmarx on localhost 
+##  Add sonar stages for format code, build, tests, sonar run, checkmarx, docker build image 
+##  Add elastic stack/ log aggregator, splunk/kibana dashboard 
+
+#Low level TODO:
 ### Add contract based generation not generate the contract via ApiResponses.
 ### Contract module
 ### Fix swagger-ui on deployment docker compose 
