@@ -1,5 +1,9 @@
-# Deployment
-## Docker
+# Tools Service
+The main purpose of the service is to manage tools and category operations. 
+
+
+## Deployment
+### Docker
 1. Build current springboot app image:
 ```
 docker build -t tools-app:1.0.0 .

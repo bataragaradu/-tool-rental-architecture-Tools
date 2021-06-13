@@ -16,16 +16,33 @@ services:
     networks:
       - postgres-network
 
-#    orders:
-#      container_name: orders-serv1
-#      image: orders-app:1.0.0
-#      ports:
-#        - 8082:8082
-#        - 11112:11111
-#      depends_on:
-#        - postgres
-#      links:
-#        - postgres
+  gateway:
+    container_name: gateway-app
+    image: api-gateway:1.0.0
+    ports:
+      - 8095:8095
+    depends_on:
+      - tools
+      - orders
+      - postgres
+#    links:
+#      - tools
+#      - orders
+#      - postgres
+    networks:
+      - postgres-network
+
+  orders:
+    container_name: orders-app
+    image: orders-app:1.0.0
+    ports:
+      - 8083:8083
+    depends_on:
+      - postgres
+    links:
+      - postgres
+    networks:
+      - postgres-network
 
   ###### Database
   postgres:
@@ -53,13 +70,15 @@ services:
     volumes:
       - pgadmin:/root/.pgadmin
     ports:
-      - "${PGADMIN_PORT:-5050}:80"
-#    networks:
-#      - postgres-network
+      - 5050:5050
+    networks:
+      - postgres-network
     restart: unless-stopped
+    depends_on:
+      - postgres
+    links:
+      - postgres
 
-
-# TODO: Investigate network issue
 networks:
   postgres-network:
     driver: bridge

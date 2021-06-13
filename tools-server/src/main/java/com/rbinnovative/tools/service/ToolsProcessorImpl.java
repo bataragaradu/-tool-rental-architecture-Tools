@@ -1,5 +1,6 @@
 package com.rbinnovative.tools.service;
 
+import com.rbinnovative.tools.exception.CategoryException;
 import com.rbinnovative.tools.exception.ToolException;
 import com.rbinnovative.tools.model.request.ToolRequest;
 import com.rbinnovative.tools.model.dao.Tools;
@@ -21,6 +22,9 @@ public class ToolsProcessorImpl implements TransactionProcessor {
     @Autowired
     private ToolsRepository toolsRepository;
 
+    @Autowired
+    private CategoryProcessorImpl categoryProcessor;
+
     @Override
     public ToolsDTO processOneQuery(Integer id) throws ToolException {
         Optional<Tools> toolOptional = toolsRepository.findById(id);
@@ -30,6 +34,16 @@ public class ToolsProcessorImpl implements TransactionProcessor {
         } else {
             throw new ToolException("The id doesn't exist, needs to be created " + id);
         }
+    }
+
+    public List<ToolsDTO> retrieveToolsByCategory(Integer categoryId) throws CategoryException {
+        categoryProcessor.processOneQuery(categoryId);
+        List<Tools> toolsForQueriedCategoryId = toolsRepository.findByCategoryId(categoryId);
+        List<ToolsDTO> queriedToolsDtos = new ArrayList<>();
+        if(toolsForQueriedCategoryId !=null){
+            queriedToolsDtos = toolsForQueriedCategoryId.stream().map(tool -> mapToToolsDTOHandler(tool, null)).collect(Collectors.toList());
+        }
+        return queriedToolsDtos;
     }
 
     @Override

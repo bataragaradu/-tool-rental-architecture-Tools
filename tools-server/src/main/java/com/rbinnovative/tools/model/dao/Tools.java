@@ -17,7 +17,10 @@ public class Tools {
     private String imageUrl;
     @Column(name = "[available]")
     private boolean available;
-
+    @Column(name = "[category_id]")
+    private Integer categoryId;
+    @Column(name = "description")
+    private String description;
     public Tools() {
     }
 
@@ -36,6 +39,24 @@ public class Tools {
 
     public Tools setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public Tools setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public Tools setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
         return this;
     }
 

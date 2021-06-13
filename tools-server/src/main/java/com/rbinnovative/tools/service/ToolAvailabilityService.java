@@ -1,5 +1,6 @@
 package com.rbinnovative.tools.service;
 
+import com.rb.innovative.client.controller.DefaultApi;
 import com.rbinnovative.tools.exception.ToolException;
 import com.rbinnovative.tools.model.dao.Tools;
 import com.rbinnovative.tools.repository.ToolsRepository;
@@ -17,8 +18,10 @@ public class ToolAvailabilityService {
 
     private final ToolsRepository toolRepository;
 
+    //TODO: add Orders client
+
     @Autowired
-    public ToolAvailabilityService(ToolsRepository toolRepository){
+    public ToolAvailabilityService(ToolsRepository toolRepository) {
         this.toolRepository = toolRepository;
     }
 

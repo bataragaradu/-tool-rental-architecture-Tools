@@ -5,6 +5,8 @@ public class ToolsDTO {
     private String name;
     private String imageUrl;
     private boolean available;
+    private Integer categoryId;
+    private String description;
 
     public ToolsDTO(){
     }
@@ -24,6 +26,33 @@ public class ToolsDTO {
 
     public ToolsDTO setName(String name) {
         this.name = name;
+        return this;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public ToolsDTO setDescription(String description) {
+        this.description = description;
+        return this;
+    }
+
+    public Integer getCategoryId() {
+        return categoryId;
+    }
+
+    public ToolsDTO setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+        return this;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public ToolsDTO setAvailable(boolean available) {
+        this.available = available;
         return this;
     }
 

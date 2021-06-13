@@ -1,5 +1,6 @@
 package com.rbinnovative.tools.controller;
 
+import com.rbinnovative.tools.exception.CategoryException;
 import com.rbinnovative.tools.exception.ToolException;
 import com.rbinnovative.tools.model.dto.ToolsDTO;
 import com.rbinnovative.tools.service.ToolsProcessorImpl;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.ws.rs.QueryParam;
 import java.time.LocalDate;
 import java.util.List;
 
@@ -69,6 +71,22 @@ public class ToolsQueryController {
         logger.info("GET tool response received {}", toolDTO);
         return ResponseEntity.ok().body(toolDTO);
     }
+
+    /**
+     * Support for GET /tools?categoryId endpoint by id
+     *
+     * @return invoice by id
+     */
+    @ApiOperation(value = "Query invoice by id")
+    @ApiResponses(value = {@ApiResponse(code = 200, message = "Success query")})
+    @RequestMapping(value = "", params = {"categoryId"})
+    public ResponseEntity<List<ToolsDTO>> retrieveToolsByCategoryId(@QueryParam("categoryId") Integer categoryId) throws CategoryException {
+        logger.info("GET tools with category id", categoryId);
+        List<ToolsDTO> toolDTO = toolsProcessor.retrieveToolsByCategory(categoryId);
+        logger.info("GET tool response received {}", toolDTO);
+        return ResponseEntity.ok().body(toolDTO);
+    }
+
 
     /**
      * Support for GET /tools/{toolId}/availability endpoint without uri params.
