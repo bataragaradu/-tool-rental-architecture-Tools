@@ -1,4 +1,28 @@
-# Tools Service
+# Rentalo Tool 
+
+# Pre-requirements:
+### Backend:
+ - Docker installed
+ - Maven installed
+ - linux terminal emulator so that backend can be started with a bash script: <b>build.sh</b>
+### Frontend:
+ - Android studio
+ - Android emulator like Pixel 3 with API version 30 
+
+## Startup:
+### Version 1 Backend startup
+    Go to tools and execute the bash script with the following command if you're from a terminal:
+    ./bash.sh 
+### Version 2 Backend startup
+     Go into every service: tools, orders, api-gateway and execute mvn clean install command, build the docker images with
+       docker build -t tools-app:1.0.0 .
+       docker build -t orders-app:1.0.0 .
+       docker build -t api-gateway:1.0.0 .
+     and execute docker-compose command from tools/environment directory.
+### Frontend
+    Run the emulator, open Rentalo Tool android project and deploy the application into the emulator. 
+
+## Tools Service
 The main purpose of the service is to manage tools and category operations. 
 
 
