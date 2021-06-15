@@ -1,5 +1,9 @@
 # Rentalo Tool 
 
+## Directories structure
+  - There are 3 java backend services directories: tools ,orders, api-gateway
+  - The Rentalo-tool-app is the android project
+
 ## Pre-requirements:
 #### Backend:
  - Docker installed
