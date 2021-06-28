@@ -35,10 +35,10 @@ public class ToolAvailabilityService {
     }
 
     private List<LocalDate> extractAvailableDate() {
-        LocalDate localDateNow = LocalDate.now();
-        LocalDate localDateEndOfCurrentMonth= localDateNow.withDayOfMonth(localDateNow.lengthOfMonth());
-        int numberOfDaysBetween = localDateEndOfCurrentMonth.getDayOfMonth() - localDateNow.getDayOfMonth() + 1;
-        return Stream.iterate(localDateNow, d -> d.plusDays(1))
+        LocalDate localDateNextMonth = LocalDate.now().plusMonths(1);
+        LocalDate localDateEndOfNextMonth= localDateNextMonth.withDayOfMonth(localDateNextMonth.lengthOfMonth());
+        int numberOfDaysBetween = localDateEndOfNextMonth.getDayOfYear() + 1 - LocalDate.now().getDayOfYear() ;
+        return Stream.iterate(LocalDate.now(), d -> d.plusDays(1))
                 .limit(numberOfDaysBetween)
                 .collect(Collectors.toList());
     }
